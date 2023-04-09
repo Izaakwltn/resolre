@@ -9,7 +9,8 @@
   :description "A Brainfuck compiler using Solfege/Solresol syllables"
   :serial t
   :components ((:file "laresolre") ;package
-               (:file "larelasi") ;list/catalog
+               (:file "larelasi")  ; cell list/array
+               (:file "resolremi") ; commands                         
                (:file "solfamifa-soldofa") ;solfege-type
                (:file "solrela-sisolla") ;lexical-analysis
                )) ;
