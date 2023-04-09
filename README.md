@@ -1,9 +1,11 @@
-# Resolre (Very Much In Progress)
+# Resolre
 ## A Brainfuck compiler using Solfege/Solresol syllables
 
-Resolre is a Brainfuck compiler adorned with the thin veneer of [Solresol][https://en.wikipedia.org/wiki/Solresol], an esoteric constructed language using the syllables of solfege. Resolre means "Error" in Solresol, in addition to being the inverse of "Solresol" itself. (I also strongly considered Solsolredo, "headache" in Solresol, which would have been closer to its brainfuck lineage).
+Resolre is a Brainfuck compiler adorned with the thin veneer of [Solresol](https://en.wikipedia.org/wiki/Solresol), an esoteric constructed language using the syllables of solfege. 
 
-To make things more frustrating (or interesting?) I have named the filenames according to loose Solresol translations:
+Resolre means "Error" in Solresol, in addition to being the inverse of "Solresol" itself. (I also strongly considered Solsolredo, "headache" in Solresol, which honestly bears more resemblance to my experience writing this project).
+
+To make things more frustrating (or interesting?) I have named the filenames according to Solresol translations:
 
 Solresol | Translation
 -------- | ----------
@@ -15,11 +17,14 @@ mirefami | main
 
 ### Current State of the Project:
 
-So far, I've managed to compile one test file, dumb-hello-world.ssrd. It spits out Hello, and regrettably doesn't use loops, as they're still being debugged. You can try it with `(run-file (asdf:system-relative-pathname "resolre" "dumb-hello-world.rsr"))`
+I've compiled one test file, dumb-hello-world.ssrd. It makes use of all commands except for loops and character input. It spits out `Hello`, which you can try using `(run-dumb-hello-world)` 
 
-I've been putting this implementation together with this as my primary reference: https://esolangs.org/wiki/Brainfuck
+Loops are on their way, post haste.
 
+### Resources/citations
 
+I've been putting this implementation together with these as my primary references: 
 
-(For more Solresol translations, I found this dictionary both useful and amusing:
-https://www.geocachingtoolbox.com/pages/codeTables/solresolDictionary.pdf )
+- https://esolangs.org/wiki/Brainfuck 
+- https://en.wikipedia.org/wiki/Brainfuck
+- https://www.geocachingtoolbox.com/pages/codeTables/solresolDictionary.pdf
