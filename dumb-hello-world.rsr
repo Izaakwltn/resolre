@@ -4,14 +4,17 @@ mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
 mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
 mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi ; Set Cell 0 to 72 (H)
 
+
 do mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
 mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
 mimimimi mimimimi mimimimi mimimimi mimimimi mi         ; Set Cell 1 to 69 (E)
+
 
 do mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
 mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
 mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
 mimimimi                                                ; Set Cell 2 to 76 (L)
+
 
 do mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
 mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
@@ -23,12 +26,11 @@ mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
 mimimimi mimimimi mimimimi mimimimi mimimimi mimimimi
 mimimimi mimimi                                         ; Set Cell 4 to 79 (O)
 
+re re re re                                             ; go back to cell 0
 
-rererere
-                       ; Start printing
-so                       ; print cell 0
-do so                    ; print cell 1
-do so                    ; print cell 2
-do so                    ; print cell 3
-do so                    ; print cell 4
-do mimimimi so           ; print cell 5, newline
+so
+do so
+do so
+do so
+do so
+

@@ -40,9 +40,9 @@
                          ("mi" #'incr)
                          ("fa" #'decr)
                          ("so" #'char-output)
-                         ("la" #'char-input)))
-                         ;("si" #'jump-forward)
-                                        ;("ut" #'jump-back)))
+                         ("la" #'char-input)
+                         ;("si" #'loop-start) ; hardwired, unecessary
+                         ("ut" #'loop-end)))
 
 ;;;; indexing commands (for loop purposes
 
@@ -60,37 +60,5 @@
   (find-if #'(lambda (x)
                (equal (first x) n))
                *indexed-commands*))
-
-(defvar *print-buffer* "")
-
-(defun new-session ()
-  (setq *current-cell* (start-cell))
-  (setq *indexed-commands* nil)
-  (setq *print-buffer* ""))
-
-(defun run-command (indexed-command)
-  "Evaluates and runs Resolre command"
-  (funcall (eval (second (assoc (second indexed-command) *symbol-table* :test #'string-equal)))))
-
-(defun run-commands (indexed-commands)
-  "Runs a list of indexed Resolre commands."
-  (cond ((null indexed-commands) *print-buffer*)
-        ((string-equal (second (first indexed-commands)) "si")
-         (loop-start (first indexed-commands)))
-        ((string-equal (
-        (t (progn (run-command (first indexed-commands))
-                  (run-commands (rest indexed-commands))))))
-
-(defun run-file (filepath)
-  (new-session)
-  (loop :for s :in (index-file filepath)
-        :do (if (string-equal (second s) "si")
-                (loop-start (first s))
-                (funcall (eval (second (assoc (second s) *symbol-table* :test #'string-equal)))))
-            :finally (return *print-buffer*)))
-
-(defun run-dumb-hello-world ()
-  (run-file (asdf:system-relative-pathname "resolre" "dumb-hello-world.ssrd")))
-;(defvar *parsed-index* 0)
 
 

@@ -13,6 +13,6 @@
                (:file "resolremi") ; commands                         
                (:file "solfamifa-soldofa") ;solfege-type
                (:file "solrela-sisolla") ;lexical-analysis
-               )) ;
+               (:file "mirefami"))) ; main
 
                                        

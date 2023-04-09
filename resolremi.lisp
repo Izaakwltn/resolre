@@ -12,7 +12,9 @@
                            (new-cell *current-cell*
                                      (1+ (cell-index *current-cell*))
                                      0
-                                     nil))))
+                                     nil)))
+  (setf (slot-value (cell-prev *current-cell*) 'next) *current-cell*))
+  
 
 (defun move-left ()
   "Moves the pointer one cell to the left."
@@ -23,17 +25,25 @@
 (defun incr ()
   "Increments the value of the current cell."
   (setf (slot-value *current-cell* 'value)
-        (1+ (cell-value *current-cell*))))
+               (1+ (cell-value *current-cell*)))
+  (if (cell-prev *current-cell*)
+      (setf (slot-value (cell-prev *current-cell*) 'next)
+            *current-cell*)))
 
 (defun decr ()
   "Decrements the value of the current cell."
   (setf (slot-value *current-cell* 'value)
-        (1- (cell-value *current-cell*))))
+        (1- (cell-value *current-cell*)))
+  (if (cell-prev *current-cell*)
+      (setf (slot-value (cell-prev *current-cell*) 'next)
+            *current-cell*)))
 
 (defun char-output ()
   "Converts the numeric value of the current cell into a character."
-  (setq *print-buffer* (cons (code-char (cell-value *current-cell*))
-                             *print-buffer*)))
+  (setq *print-buffer* (format nil "~a~a"
+                               *print-buffer*
+                               (coerce (list (code-char (cell-value *current-cell*)))
+                                            'string))))
 
 (defun char-input (char) ; d
   "Takes character as input, assigns numeric code to current-cell"
@@ -53,7 +63,7 @@
 (defun find-end-index (start-index)
   "Finds the si/] at the end of the loop"
   (first (find-if #'(lambda (x)
-               (string-equal x (second x)))
+               (string-equal "ut" (second x)))
            (nthcdr start-index *indexed-commands*))))
           
 (defun add-looper (start-index)
@@ -64,7 +74,7 @@
 
 (defun looper-nonexistent (index)
   (find-if #'(lambda (x)
-               (equal (looper-start-index index) x))
+               (equal index (looper-start-index x)))
            *loopers*))
 
 (defun remove-looper ()
@@ -78,7 +88,10 @@
          (add-looper index))
         ((zerop (cell-value *current-cell*))
          (skip-loop (looper-end-index (pop *loopers*))))
-        (t (run-commands (nthcdr (1+ index) *indexed-commands*))))) 
+        (t (run-commands (nthcdr (1+ index) *indexed-commands*)))))
+
+(defun loop-end ()
+  (loop-start (looper-start-index (first (last *loopers*)))))
          
 ;(defun loop-start (index)
  ; (cond ((zerop (cell-value *current-cell*))
