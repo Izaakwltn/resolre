@@ -1,4 +1,4 @@
-;;;; hello-world.ssrd (carfully avoiding sfege characters in comments)
+;;;; hello-world.rsr (carfully avoiding sfege characters in comments)
 
 mimimimi mimimimi      ; Set Cell 0 to 8 (loop counter)
 si                     ; while this cell is not 0, loop :)
