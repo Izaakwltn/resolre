@@ -13,12 +13,12 @@ Like Solresol, Resolre uses solfege syllables: do re mi fa so la si ut. Here are
 
 Resolre | Brainfuck | Function
 --- | --- | ---
-do  | >   | move one cell to the right
-re  | <   | move one cell to the left
-mi  | +   | increment the current cell
-fa  | -   | decrement the current cell
-so  | .   | print the corresponding ascii character to the value of the current cell
-la  | ,   | take one byte of input, store its value in the current cell
+do  | >   | Move one cell to the right
+re  | <   | Move one cell to the left
+mi  | +   | Increment the current cell
+fa  | -   | Decrement the current cell
+so  | .   | Print the corresponding ascii character to the value of the current cell
+la  | ,   | Take one byte of input, store its value in the current cell
 si  | [   | Start loop, if the current cell's value is 0, end loop.
 ut  | ]   | If cell is non-zero, go back to the start of the loop, else continue past.
 
@@ -29,16 +29,18 @@ To make things more frustratingly eccentric, and hopefully interesting, I have n
 Solresol | Translation
 -------- | ----------
 laresolre | package
-larelasi | list/catalog (the brainfuck array)
+larelasi | list/catalog (the array)
+resolremi | commands
 solfamifa-soldofa | solfege-type
 solrela-sisolla | lexical-analysis
 mirefami | main
 
 ### Current State of the Project:
 
-I've compiled one test file, dumb-hello-world.ssrd. It makes use of all commands except for loops and character input. It spits out `Hello`, which you can try using `(run-dumb-hello-world)` 
+Currently, losing my mind. I've nearly compiled the standard brainfuck Hello World! from wikipedia, which has brought me a delightful recursion error, where after completing all commands (and having every function under the sun return `Hello World!`, the program decides to start over from the middle, and tries to print a negative-value ascii character just for fun. It's got something to do with loops, and my personal misery. 
 
-Loops are on their way, post haste.
+On a happier note, I've compiled one test file, dumb-hello-world.rsr. It makes use of all commands except for loops and character input. It spits out `Hello`, which you can try using `(run-dumb-hello-world)` 
+
 
 ### Resources/citations
 
