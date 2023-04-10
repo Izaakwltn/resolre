@@ -8,7 +8,8 @@
   :license "GNU General Purpose License"
   :description "A Brainfuck compiler using Solfege/Solresol syllables"
   :serial t
-  :components ((:module "src"
+  :components ((:file "examples")
+               (:module "src"
                 :serial t
                 :components ((:file "laresolre") ; package
                              (:file "larelasi")  ; cell list/array

@@ -37,7 +37,9 @@ mirefami | main
 
 ### Current State of the Project:
 
-Currently, losing my mind. I've nearly compiled the standard brainfuck Hello World! from wikipedia, which has brought me a delightful recursion error, where after completing all commands (and having every function under the sun return `Hello World!`, the program decides to start over from the middle, and tries to print a negative-value ascii character just for fun. It's got something to do with loops, and my personal misery. 
+Caught on loops a bit, there's some recursive process that is ending the last loop in parallel? Time will tell. I have a simple multiply example `(run-multiply)` that is successful besides a random post-loop loop. fun stuff!
+
+I've also nearly compiled the standard brainfuck Hello World! from wikipedia, which has brought me a delightful recursion error, where after completing all commands (and having every function under the sun return `Hello World!`, the program decides to start over from the middle, and tries to print a negative-value ascii character just for fun. It's got something to do with loops, and my personal misery (same issue as multiply.rsr). Try out the frustration with `(run-hello-world)`!
 
 On a happier note, I've compiled one test file, dumb-hello-world.rsr. It makes use of all commands except for loops and character input. It spits out `Hello`, which you can try using `(run-dumb-hello-world)` 
 

@@ -1,0 +1,17 @@
+;;;; smple addition example
+
+mimi                      ; incr c0 twice
+do mimimimi mi            ; incr c1 x5
+                          ; (c1 is loop counter)
+si
+  re mi                   ; incr c0
+  do fa                   ; decr c1 (counter)
+ut                        ; loop end
+
+                          ; adding 48 for ascii
+mimimimi mimimimi         ; incr c1 x8
+si
+  re mimimimi mimi        ; incr c0 x 6
+  do fa                   ; 1- counter
+ut
+re so                     ; print c0

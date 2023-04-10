@@ -106,16 +106,27 @@
   "Removes a looper from *loopers*"
   (pop *loopers*))
 
-(defun skip-loop ()
-  (run-commands (nthcdr (1+ (looper-end-index (pop *loopers*))) *indexed-commands*)))
+;(defun skip-loop ()
+ ; (run-commands (nthcdr (1+ (looper-end-index (pop *loopers*))) *indexed-commands*)))
 
 (defun loop-start (index)
   (cond ((not (looper-exists index))
          (progn (add-looper index)
                 (run-commands (nthcdr (1+ index) *indexed-commands*))))
-        ((zerop (cell-value *current-cell*))
-         (skip-loop)) ; (looper-end-index (pop *loopers*))))
+ ;       ((zerop (cell-value *current-cell*))
+ ;        (skip-loop))
         (t (run-commands (nthcdr (1+ index) *indexed-commands*)))))
 
+;(defun loop-start (index)
+ ; (cond ((zerop (cell-value *current-cell*))
+  ;       (run-commands (nthcdr (1+ (corresponding-ut index)) *indexed-commands*)))
+   ;     (t (progn (add-looper index)
+    ;              (run-commands (nthcdr (1+ index) *indexed-commands*))))))
+
 (defun loop-end ()
-  (loop-start (looper-start-index (first *loopers*))))
+  (if (zerop (cell-value *current-cell*))
+      (run-commands (nthcdr (1+ (looper-end-index (pop *loopers*))) *indexed-commands*))
+      (loop-start (looper-start-index (first *loopers*)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; does a language even need loops
