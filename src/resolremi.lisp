@@ -57,50 +57,65 @@
 (defstruct looper start-index end-index)
                                         ; looper collects the index of the starting loop
                                         ; character ([ in brainfuck)
-                                        ; as well as the index of the cell
+                                        ; as well as the index of the loop's end
                                         ; in which the command resides
 
-(defun find-end-index (start-index)
-  "Finds the si/] at the end of the loop"
+
+;;; okay so, look for the next "ut"
+;;; if you pass by a "si" before that "ut"
+;;; look for the next next "ut", etc
+
+(defun find-si (index)
+  "Finds the first 'si' after a given index"
   (first (find-if #'(lambda (x)
-               (string-equal "ut" (second x)))
-           (nthcdr start-index *indexed-commands*))))
-          
+                         (string-equal "si" (second x)))
+                  (nthcdr index *indexed-commands*))))
+
+(defun find-ut (index)
+  "Finds the first 'ut' after a given index"
+  (first (find-if #'(lambda (x)
+                         (string-equal "ut" (second x)))
+                  (nthcdr index *indexed-commands*))))
+
+(defun si-before-ut (index)
+  "Checks whether you run into a 'si' before the next 'ut'"
+  (if (find-si index)
+      (< (find-si index)
+         (find-ut index))
+      nil))
+
+(defun corresponding-ut (si)
+  "Finds the corresponding end index for a given start index. (ut for si)"
+  (if (si-before-ut (1+ si))
+      (corresponding-ut (1+ (find-ut si)))
+      (find-ut si)))
+
 (defun add-looper (start-index)
   "Add a new looper to the *loopers* list"
   (push (make-looper :start-index start-index
-                     :end-index (find-end-index start-index))
+                     :end-index (corresponding-ut start-index))
         *loopers*))
 
-(defun looper-nonexistent (index)
+(defun looper-exists (index)
+  "Checks whether a looper exists given its index."
   (find-if #'(lambda (x)
                (equal index (looper-start-index x)))
            *loopers*))
 
 (defun remove-looper ()
+  "Removes a looper from *loopers*"
   (pop *loopers*))
 
-(defun skip-loop (end-index)
-  (run-commands (nthcdr (1+ end-index) *indexed-commands*)))
+(defun skip-loop ()
+  (run-commands (nthcdr (1+ (looper-end-index (pop *loopers*))) *indexed-commands*)))
 
 (defun loop-start (index)
-  (cond ((looper-nonexistent index)
-         (add-looper index))
+  (cond ((not (looper-exists index))
+         (progn (add-looper index)
+                (run-commands (nthcdr (1+ index) *indexed-commands*))))
         ((zerop (cell-value *current-cell*))
-         (skip-loop (looper-end-index (pop *loopers*))))
+         (skip-loop)) ; (looper-end-index (pop *loopers*))))
         (t (run-commands (nthcdr (1+ index) *indexed-commands*)))))
 
 (defun loop-end ()
-  (loop-start (looper-start-index (first (last *loopers*)))))
-         
-;(defun loop-start (index)
- ; (cond ((zerop (cell-value *current-cell*))
-  ;      (and (find-if-not #'(lambda (x)
-   ;                   (equal index (looper-command-index x)))
-    ;                    *loopers*)
-     ;      (not (zerop (cell-value (add-looper index (cell-index *current-cell*)))
-;
- ;                      (defun find-loop-end (index)
-                         
-;(defun loop-end (index)
- ; (if 
+  (loop-start (looper-start-index (first *loopers*))))
