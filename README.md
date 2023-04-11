@@ -15,10 +15,10 @@ mimimimi mimimi      ; c0 = 7
                      ; add 48 to 7 for ascii:
                      
 do mimimimi mimimimi ; c1 = 8 (loop counter)
-si
+si                   ; start loop
   re mimimimi mimi   ; incr c0 x6
   do fa              ; decr c1
-ut
+ut                   ; end loop
 
 re so                ; print c0 => 55 ("7")
 ```
