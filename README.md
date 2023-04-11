@@ -5,6 +5,22 @@ Resolre is a Brainfuck compiler adorned with a thin veneer of [Solresol](https:/
 
 Resolre means "Error" in Solresol, in addition to being the inverse of "Solresol" itself. (I also strongly considered Solsolredo, "headache" in Solresol, which honestly bears more resemblance to my experience writing this project).
 
+### Simple Example (Prints "7")
+
+```;;;; print-7.rsr
+
+mimimimi mimimi      ; c0 = 7
+                    
+                   ; add 48 to 7 for ascii:
+                     
+do mimimimi mimimimi ; c1 = 8 (loop counter)
+si
+  re mimimimi mimi   ; incr c0 x6
+  do fa              ; decr c1
+ut
+
+re so                ; print c0 => 55 ("7")```
+
 ### Syntax
 
 Resolre/brainfuck is a language that exists within an array of cells, which are navigated, altered, and accessed with only eight commands.
