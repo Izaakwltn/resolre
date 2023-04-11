@@ -4,10 +4,17 @@
 
 (in-package #:resolre)
 
-;;; brainfuck originally had an indexed array, originally initialized at 30k cells long
-;;; Resolre works through a doubly-linked list, and makes new cells as necessary
+
+;;; Brainfuck originally had an indexed array, initialized at 30k cells long.
+;;; Resolre works through a doubly-linked list, and makes new cells as necessary.
+
+;;; One potential quirk is that at cell 0, if you attempt to "re"/move back one cell
+;;; it will instead stay at cell 0. I may switch this for an error at some point,
+;;; but for now, like a filmic mental institution, I've settled on a padded cell wall.
+
 
 ;;; Cells (nodes)
+
 (defstruct cell prev index value next)
 
 (defmethod print-object ((cell cell) stream)
@@ -20,6 +27,7 @@
       (format stream "~%Index: ~a~%Value: ~a~%" index value))))
 
 (defun new-cell (prev index value next)
+  "Makes a new cell."
   (make-cell :prev prev
              :index index
              :value value
@@ -28,6 +36,7 @@
 ;;; Initializing the array
 
 (defun start-cell ()
+  "A blank starting cell for the array."
   (new-cell nil 0 0 nil))
 
 (defvar *current-cell* (start-cell))

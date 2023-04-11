@@ -8,14 +8,13 @@
   :license "GNU General Purpose License"
   :description "A Brainfuck compiler using Solfege/Solresol syllables"
   :serial t
-  :components ((:file "examples")
-               (:module "src"
+  :components ((:module "src"
                 :serial t
                 :components ((:file "laresolre") ; package
                              (:file "larelasi")  ; cell list/array
-                             (:file "resolremi") ; commands                         
-                             (:file "solfamifa-soldofa") ;solfege-type
+                             (:file "resolremi") ; commands             
                              (:file "solrela-sisolla") ;lexical-analysis
-                             (:file "mirefami"))))) ; main
-
-                                       
+                             (:file "mirefami"))) ; main
+	       (:module "examples"
+                :serial t
+		:components ((:file "examples")))))

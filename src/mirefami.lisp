@@ -15,12 +15,14 @@
   "Evaluates and runs Resolre command"
   (funcall (eval (second (assoc (second indexed-command) *symbol-table* :test #'string-equal)))))
 
-(defun run-commands (indexed-commands) ; officially losing my mind, what the fuck
-  "Runs a list of indexed Resolre commands." ; recursion why you do me like this
-  (cond ((null indexed-commands)          ; restarts the process at 49 for no reason
-         *print-buffer*)                  ; probably a reason, last "ut" is 48......
+(defun run-commands (indexed-commands) ; the recursive point where I nearly lost my mind
+  "Cycles through a list of indexed Resolre commands." 
+  (cond ((null indexed-commands)          
+         *print-buffer*)                  
         ((string-equal (second (first indexed-commands)) "si")
          (loop-start (first (first indexed-commands))))
+	((string-equal (second (first indexed-commands)) "ut")
+	 (loop-end (first (first indexed-commands))))
         (t (progn (run-command (first indexed-commands))
                   (run-commands (rest indexed-commands))))))
 

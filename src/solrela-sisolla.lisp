@@ -4,15 +4,17 @@
 
 (in-package #:resolre)
 
-;;; probably best with alexa, but for now, good old recursion
+;;; Declaring the solfege type
 
-;;; parsing
+(setq *solfege-syllables* '("do" "re" "mi" "fa" "so" "la" "si" "ut"))
 
-(defvar *test1* "do re mi fa so la si ut")
+(defun solfege-p (x)
+  (member x *solfege-syllables* :test #'string-equal))
 
-(defvar *test2* "doremifasolasiut")
+(deftype solfege ()
+  `(satisfies solfege-p))
 
-(defvar *test3* "dontremindmefacesolittlelattetositout")
+;;; Parsing Resolre commands
 
 (defun parse (input-string)
   "Parses out solfege syllables from a string"
@@ -27,38 +29,41 @@
                   
         :finally (return (reverse parsed))))
 
-;(defvar *parsed-file* nil)
+(defun parse-file (filepath)
+  "Parses Resolre commands from a given file."
+  (parse (uiop:read-file-string filepath)))
 
-(defun parse-file (filename)
-  (parse (uiop:read-file-string filename)))
-
-;(defun hello-world ()
- ; (index-file (parse-file (asdf:system-relative-pathname "resolre" "dumb-hello-world.ssrd"))))
+;;; Correlating Resolre commands with functions
 
 (defvar *symbol-table* '(("do" #'move-right)
                          ("re" #'move-left)
                          ("mi" #'incr)
                          ("fa" #'decr)
                          ("so" #'char-output)
-                         ("la" #'char-input)
-                         ;("si" #'loop-start) ; hardwired, unecessary
-                         ("ut" #'loop-end)))
+                         ("la" #'char-input)))
+                         ;("si" #'loop-start) ; hardwired because these require an index number
+                         ;("ut" #'loop-end)))
 
-;;;; indexing commands (for loop purposes
+;;; Indexing commands (for loop purposes)
+;;;
+;;; Each Resolre command is given an index number
 
 (defvar *indexed-commands* nil)
 
 (defun index-parsed (parsed-list)
+  "Takes a list of parsed Resolre commands, applies index value."
   (loop :for i :in parsed-list
         :for j :from 0 :to (1- (length parsed-list))
         :collect (list j i)))
 
-(defun index-file (filename)
-  (setq *indexed-commands* (index-parsed (parse-file filename))))
+(defun index-file (filepath)
+  "Takes a path/file, populates *indexed-commands* with its indexed and parsed elements."
+  (setq *indexed-commands* (index-parsed (parse-file filepath))))
 
-(defun find-indexed (n)
+(defun find-command (index)
+  "Finds a command given its index."
   (find-if #'(lambda (x)
-               (equal (first x) n))
+               (equal (first x) index))
                *indexed-commands*))
 
 
