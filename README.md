@@ -7,11 +7,12 @@ Resolre means "Error" in Solresol, in addition to being the inverse of "Solresol
 
 ### Simple Example (Prints "7")
 
-```;;;; print-7.rsr
+```
+print-7.rsr
 
 mimimimi mimimi      ; c0 = 7
                     
-                   ; add 48 to 7 for ascii:
+                     ; add 48 to 7 for ascii:
                      
 do mimimimi mimimimi ; c1 = 8 (loop counter)
 si
@@ -19,7 +20,8 @@ si
   do fa              ; decr c1
 ut
 
-re so                ; print c0 => 55 ("7")```
+re so                ; print c0 => 55 ("7")
+```
 
 ### Syntax
 
