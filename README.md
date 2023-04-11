@@ -15,10 +15,10 @@ mimimimi mimimi      ; c0 = 7
                      ; add 48 to 7 for ascii:
                      
 do mimimimi mimimimi ; c1 = 8 (loop counter)
-si                   ; start loop
+la                   ; start loop
   re mimimimi mimi   ; incr c0 x6
   do fa              ; decr c1
-ut                   ; end loop
+si                   ; end loop
 
 re so                ; print c0 => 55 ("7")
 ```
@@ -27,7 +27,7 @@ re so                ; print c0 => 55 ("7")
 
 Resolre/brainfuck is a language that exists within an array of cells, which are navigated, altered, and accessed with only eight commands.
 
-Like Solresol, Resolre uses solfege syllables: do re mi fa so la si ut. Here are the eight Resolre commands, along with their Brainfuck counterparts and their respective functions:
+Like Solresol, Resolre uses solfege syllables: do re mi fa so la si. Here are the eight Resolre commands, along with their Brainfuck counterparts and their respective functions:
 
 Resolre | Brainfuck | Function
 --- | --- | ---
