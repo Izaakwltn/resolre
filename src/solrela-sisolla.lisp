@@ -6,7 +6,7 @@
 
 ;;; Declaring the solfege type
 
-(setq *solfege-syllables* '("do" "re" "mi" "fa" "so" "la" "si" "ut"))
+(setq *solfege-syllables* '("do" "re" "mi" "fa" "so" "la" "si")) ;with "ut" if charinput added
 
 (defun solfege-p (x)
   (member x *solfege-syllables* :test #'string-equal))
@@ -39,10 +39,10 @@
                          ("re" #'move-left)
                          ("mi" #'incr)
                          ("fa" #'decr)
-                         ("so" #'char-output)
-                         ("la" #'char-input)))
-                         ;("si" #'loop-start) ; hardwired because these require an index number
-                         ;("ut" #'loop-end)))
+                         ("so" #'char-output)))
+                         ;("la" #'char-input)))
+                         ;("la" #'loop-start) ; hardwired because these require an index number
+                         ;("si" #'loop-end)))
 
 ;;; Indexing commands (for loop purposes)
 ;;;

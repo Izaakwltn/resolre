@@ -18,3 +18,6 @@
 
 (defun run-addition ()
   (run-example "addition.rsr"))
+
+(defun run-summoning ()
+  (run-example "summoning.rsr"))

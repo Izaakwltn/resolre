@@ -19,9 +19,9 @@
   "Cycles through a list of indexed Resolre commands." 
   (cond ((null indexed-commands)          
          *print-buffer*)                  
-        ((string-equal (second (first indexed-commands)) "si")
+        ((string-equal (second (first indexed-commands)) "la")
          (loop-start (first (first indexed-commands))))
-	((string-equal (second (first indexed-commands)) "ut")
+	((string-equal (second (first indexed-commands)) "si")
 	 (loop-end (first (first indexed-commands))))
         (t (progn (run-command (first indexed-commands))
                   (run-commands (rest indexed-commands))))))

@@ -36,9 +36,8 @@ re  | <   | Move one cell to the left
 mi  | +   | Increment the current cell
 fa  | -   | Decrement the current cell
 so  | .   | Print the corresponding ascii character to the value of the current cell
-la  | ,   | Take one byte of input, store its value in the current cell
-si  | [   | Start loop, if the current cell's value is 0, end loop.
-ut  | ]   | If cell is non-zero, go back to the start of the loop, else continue past.
+la  | [   | Start loop, if the current cell's value is 0, end loop.
+si  | ]   | If cell is non-zero, go back to the start of the loop, else continue past.
 
 ### Navigating the Project:
 
@@ -54,14 +53,13 @@ mirefami | main
 
 ### Current State of the Project:
 
-All commands have been tested successfully besides "la", the character input function.
-
 Three .rsr files have been tested and are up and running, if you'd like to try them out:
 `(run-hello-world)`
 `(run-dumb-hello-world)`
 `(run-print-7)`
+`(run-summoning)`
 
-I'll be adding more test-cases.
+I'll be adding more examples soon. 
 
 ### Resources/citations
 

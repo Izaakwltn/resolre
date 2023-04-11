@@ -56,16 +56,22 @@
                                (coerce (list (code-char (cell-value *current-cell*)))
                                             'string))))
 
-;;; "la"
+;;; "la" - May reimplement, but for now, remove
 
-(defun char-input (char) ; d
-  "Takes character as input, assigns numeric code to current-cell"
-  (setf (slot-value *current-cell* 'value)
-        (char-code char)))
+;(defun char-input (char) ; d
+ ; "Takes character as input, assigns numeric code to current-cell"
+  ;(setf (slot-value *current-cell* 'value)
+   ;     (char-code char)))
 
 ;;;; loop commands
 
 ;;; Finding the corresponding ut for a si (loop matching)
+
+(defun find-la (index)
+  "Finds the first 'la' after a given index"
+  (first (find-if #'(lambda (x)
+                         (string-equal "la" (second x)))
+                  (nthcdr index *indexed-commands*))))
 
 (defun find-si (index)
   "Finds the first 'si' after a given index"
@@ -73,26 +79,28 @@
                          (string-equal "si" (second x)))
                   (nthcdr index *indexed-commands*))))
 
-(defun find-ut (index)
-  "Finds the first 'ut' after a given index"
-  (first (find-if #'(lambda (x)
-                         (string-equal "ut" (second x)))
-                  (nthcdr index *indexed-commands*))))
-
-(defun si-before-ut (index)
-  "Checks whether you run into a 'si' before the next 'ut'"
-  (if (find-si index)
-      (< (find-si index)
-         (find-ut index))
+(defun la-before-si (index)
+  "Checks whether you run into a 'la' before the next 'si'"
+  (if (find-la index)
+      (< (find-la index)
+         (find-si index))
       nil))
 
-(defun corresponding-ut (si)
-  "Finds the corresponding end index for a given start index. (ut for si)"
-  (if (si-before-ut (1+ si))
-      (corresponding-ut (1+ (find-ut si)))
-      (find-ut si)))
+(defun corresponding-si (la)
+  "Finds the corresponding end index for a given start index. (si for la)"
+  (if (la-before-si (1+ la))
+      (corresponding-si (1+ (find-si la)))
+      (find-si la)))
 
 ;;; Finding the corresponding si for an ut (loop beginning for a loop end)
+
+(defun reverse-find-la (index)
+  "Finds the last la before an index."
+  (first (find-if #'(lambda (x)
+		      (string-equal (second x) "la"))
+		  (nthcdr (- (length *indexed-commands*)
+			     index)
+			  (reverse *indexed-commands*)))))
 
 (defun reverse-find-si (index)
   "Finds the last si before an index."
@@ -102,26 +110,18 @@
 			     index)
 			  (reverse *indexed-commands*)))))
 
-(defun reverse-find-ut (index)
-  "Finds the last ut before an index."
-  (first (find-if #'(lambda (x)
-		      (string-equal (second x) "ut"))
-		  (nthcdr (- (length *indexed-commands*)
-			     index)
-			  (reverse *indexed-commands*)))))
-
-(defun ut-before-si (index)
+(defun si-before-la (index)
   "Checks the indexed commands backwards to see whether you run into an ut before a si."
-  (if (reverse-find-ut index)
-      (> (reverse-find-ut index)
-         (reverse-find-si index))
+  (if (reverse-find-si index)
+      (> (reverse-find-si index)
+         (reverse-find-la index))
       nil))
   
-(defun corresponding-si (ut)
+(defun corresponding-la (si)
   "Finds the corresponding start index (si) for a given end (ut)"
-  (if (ut-before-si (1- ut))
-      (corresponding-si (1- (reverse-find-si ut)))
-      (reverse-find-si ut)))
+  (if (si-before-la (1- si))
+      (corresponding-la (1- (reverse-find-la si)))
+      (reverse-find-la si)))
 
 ;;; Actual loop functions:
 
@@ -137,4 +137,4 @@
   "The end of a loop, if pointer is zero, keep calm and carry on."
   (if (zerop (cell-value *current-cell*))
       (run-commands (nthcdr (1+ index) *indexed-commands*))
-      (loop-start (corresponding-si index))))
+      (loop-start (corresponding-la index))))

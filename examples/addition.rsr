@@ -3,15 +3,15 @@
 mimimimi mi               ; incr c0 x5
 do mi mi mi               ; incr c1 x3
                           ; (c1 is loop counter)
-si
+la
   re mi                   ; incr c0
   do fa                   ; decr c1 (counter)
-ut                        ; loop end
+si                        ; loop end
 
-                          ; adding 48 for ascii
+                          ; adding 48 for ascii printing
 mimimimi mimimimi         ; incr c1 x8
-si
+la
   re mimimimi mimi        ; incr c0 x 6
   do fa                   ; 1- counter
-ut
+si
 re so                     ; print c0 => "8"
