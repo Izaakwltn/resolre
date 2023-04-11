@@ -12,7 +12,6 @@
 ;;; it will instead stay at cell 0. I may switch this for an error at some point,
 ;;; but for now, like a filmic mental institution, I've settled on a padded cell wall.
 
-
 ;;; Cells (nodes)
 
 (defstruct cell prev index value next)

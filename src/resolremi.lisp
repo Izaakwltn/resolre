@@ -65,19 +65,6 @@
 
 ;;;; loop commands
 
-;(defvar *loopers* nil)
-
-;(defstruct looper start-index end-index)
-                                        ; looper collects the index of the starting loop
-                                        ; character ([ in brainfuck)
-                                        ; as well as the index of the loop's end
-                                        ; in which the command resides
-
-
-;;; okay so, look for the next "ut"
-;;; if you pass by a "si" before that "ut"
-;;; look for the next next "ut", etc
-
 ;;; Finding the corresponding ut for a si (loop matching)
 
 (defun find-si (index)
@@ -151,45 +138,3 @@
   (if (zerop (cell-value *current-cell*))
       (run-commands (nthcdr (1+ index) *indexed-commands*))
       (loop-start (corresponding-si index))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;(defun add-looper (start-index)
- ; "Add a new looper to the *loopers* list"
-  ;(push (make-looper :start-index start-index
-   ;                  :end-index (corresponding-ut start-index))
-    ;    *loopers*))
-
-;(defun looper-exists (index)
- ; "Checks whether a looper exists given its index."
-  ;(find-if #'(lambda (x)
-   ;            (equal index (looper-start-index x)))
-    ;       *loopers*))
-
-;(defun remove-looper ()
- ; "Removes a looper from *loopers*"
-  ;(pop *loopers*))
-
-;(defun skip-loop ()
- ; (run-commands (nthcdr (1+ (looper-end-index (pop *loopers*))) *indexed-commands*)))
-
-;(defun loop-start (index)
- ; (cond ((not (looper-exists index))
-  ;       (progn (add-looper index)
-   ;;             (run-commands (nthcdr (1+ index) *indexed-commands*))))
- ;       ((zerop (cell-value *current-cell*))
- ;        (skip-loop))
-     ;   (t (run-commands (nthcdr (1+ index) *indexed-commands*)))))
-
-;(defun loop-start (index)
- ; (cond ((zerop (cell-value *current-cell*))
-  ;       (run-commands (nthcdr (1+ (corresponding-ut index)) *indexed-commands*)))
-   ;     (t (progn (add-looper index)
-    ;              (run-commands (nthcdr (1+ index) *indexed-commands*))))))
-
-;(defun loop-end ()
- ; (if (zerop (cell-value *current-cell*))
-  ;    (run-commands (nthcdr (1+ (looper-end-index (pop *loopers*))) *indexed-commands*))
-   ;   (loop-start (looper-start-index (first *loopers*)))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; does a language even need loops

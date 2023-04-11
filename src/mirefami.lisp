@@ -31,9 +31,3 @@
   (index-file filepath)
   (run-commands *indexed-commands*))
 
-(defun run-dumb-hello-world ()
-  (run-file (asdf:system-relative-pathname "resolre" "examples/dumb-hello-world.rsr")))
-
-(defun run-hello-world ()
-  (run-file (asdf:system-relative-pathname "resolre" "examples/hello-world.rsr")))
-
