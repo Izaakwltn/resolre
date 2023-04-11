@@ -1,7 +1,7 @@
 ;;;; smple addition example
 
-mimi                      ; incr c0 twice
-do mimimimi mi            ; incr c1 x5
+mimimimi mi               ; incr c0 x5
+do mi mi mi               ; incr c1 x3
                           ; (c1 is loop counter)
 si
   re mi                   ; incr c0
@@ -14,4 +14,4 @@ si
   re mimimimi mimi        ; incr c0 x 6
   do fa                   ; 1- counter
 ut
-re so                     ; print c0
+re so                     ; print c0 => "8"

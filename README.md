@@ -41,7 +41,7 @@ All commands have been tested successfully besides "la", the character input fun
 Three .rsr files have been tested and are up and running, if you'd like to try them out:
 `(run-hello-world)`
 `(run-dumb-hello-world)`
-`(run-multiply)`
+`(run-print-7)`
 
 I'll be adding more test-cases.
 

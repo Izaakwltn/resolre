@@ -1,0 +1,22 @@
+;;;; project euler #1
+
+                                  
+do mimimimi mimimi                ; set c0 to 0, 
+do mimimi mimimi                  ; set c1 to 0,
+           
+do mimimimi mimi                  ; set c2 to 6, loop counter
+si 
+  do mimimimi mimimimi            ; incr c3 x11
+     mimimi
+  re fa
+ut                                ; at the end of this, c3 contains 66
+
+do                                ; move to c3, loop counter with 66
+si
+  re re mimimi                    ; move to c1, incr x3
+  
+s i
+  m i m i m i                          ; incr c2 x3
+  
+
+

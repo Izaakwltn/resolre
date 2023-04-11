@@ -7,11 +7,14 @@
 (defun run-example (filename) ;filename in examples folder
   (run-file (asdf:system-relative-pathname "resolre" (format nil "~a~a" "examples/" filename))))
 
-(defun run-multiply ()
-  (run-example "multiply.rsr"))
+(defun run-print-7 ()
+  (run-example "print-7.rsr"))
 
 (defun run-dumb-hello-world ()
   (run-example "dumb-hello-world.rsr"))
 
 (defun run-hello-world ()
   (run-example "hello-world.rsr"))
+
+(defun run-addition ()
+  (run-example "addition.rsr"))
