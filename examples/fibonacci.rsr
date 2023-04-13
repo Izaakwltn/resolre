@@ -1,0 +1,205 @@
+;;; fibonacci.rsr
+Cell0 = fib1
+Cell1 = fib2
+Cell2 = fib3
+Cell3 = loop counter
+Cell4 = printing tmp
+Cell5 = print value copy
+
+   mi                          ; incr cell0
+do
+do mimimi                      ; incr cell2 3
+dododo mi rerere               ; incr cell5 (print value)
+
+la                             ; start loop
+   do mimimimi                 ; add 11x3 to cell3
+      mimimimi
+      mimimi
+   re fa                       ; decr cell2
+si                             ; end loop
+
+;;cell0 = 1, cell1 = 0, cell2 = 0, cell3 = 33, cell4 = 0, cell5 = 1
+
+do                             ; move to cell3
+la                             ; start loop
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+   ;;; I'm already adding values- can't I just add to a printing cell rather than starting the process over with the copying?
+   ;;; cell0 -> cell1, 2, 4, then cell1 -> 0, 2, 4 etc
+
+   ;;; then I can just have one print template that just requires cell4 to be updated prior to printing
+
+   ;;; cell4 = currnt fib for printing
+
+   dododo                     ; move to cell6
+;;; Division
+   mimimimi mimimimi mimi     ; incr cell6 x10
+   do lafasi mi               ; clear, then incr cell7
+   do lafasi                  ; clear cell8, 9, 10 
+   do lafasi
+   do lafasi
+                              
+   rererere re                ; move to cell 5
+   si
+      fa do fa                ; decr cell5, cell6
+      si domi dodo la         ; incr, then climb until 0
+      do
+      si
+         si faremido la
+	 mi do mi dodo
+      la rererere re
+   la
+   dodo fa si fa rere mi dodo la ; store remainder in cell5
+   rere sifala                     ; clear cell4 tmp     
+   mimimimi mimimimi               ; incr x8
+   si fa re mimimimi mimi do la    ; make cell5 ascii
+   dodo si fa rere mi dodo la      ; 
+   rere
+la
+
+re si
+      so sifala re                 ; print each digit
+   la                              ; until you hit temp
+
+rerere                             ; move to cell1 for next part
+
+
+;;;;;;;;;;;;maybe old and useless version:
+
+                               ; cell0 is print value,
+                               ; cell4 is tmp
+                               ; cell5, 6 etc
+
+   dodo lafasi mi              ; clear, incr cell5
+   do mi re                    ; clear, incr cell6, back to cell5
+   si                          ; loop on cell5
+      do si                    ; loop on cell6
+            fa re fa           ; decr cell6, cell5
+	    rererere re        ; move back to cell0
+	    si                 ; -----copy cell0 to 4 & 5----
+	       fa              ; decr cell0
+	       dodododo mi     ; incr cell4
+	       do mi           ; incr cell5
+	       rererere re     ; move back to cell0
+	    la
+	    dodododo           ; ----restoring cell0----
+	    si                 ; loop from cell4
+	       fa rererere
+	       mi dodododo     ; add cell4 to cell0
+	    la
+	    dodo               ; move to cell6
+	 la
+	                       ;----division prep-----
+      mimimimi mimimimi mimi   ; incr cell7 x10
+	    
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+   ;;;next fib
+   
+   rerere                      ; move to cell0
+   la                          ; start loop, add c0 to c1 & c2
+      do mi                    ; incr cell1, then cell2
+      do mi       
+      rere fa                  ; decr cell0
+   si
+
+   ;;; printing 
+   ;;;
+   ;;; complex printing stuff here
+   ;;;
+
+   do                          ; move to cell1
+   la
+      do mi                    ; incr cell2
+      rere mi                  ; incr cell0
+      do fa                    ; decr cell1
+   si
+
+   ;;;
+   ;;; more complex printing stuff
+   ;;;
+
+   do                          ; move to cell2
+   la
+      fa                       ; decr cell2
+      re mi                    ; incr cell1
+      re mi                    ; incr cell0
+   si
+
+   ;;;
+   ;;; Yet more complex printing stuff
+   ;;;
+
+   ;;; is that it?
+
+   decr cell3
+si
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Complex printing stuff:
+
+cell4 will be print value
+cell5 is tmp (for restoring print value)
+cell6, 7
+
+;incr cell6, cell7, go back to cell6
+
+do mi                                  ; incr cell6
+do mi re                               ; incr cell7, back to cell6
+si                                     ; loop on cell6
+   do si                               ; loop on cell7
+         fa re fa                      ; decr cell7, cell6
+	 re re si                      ; go to cell4, start loop
+                  fa do mi do mi re re ; copy cell4 to 5 & 6
+ 	       la
+	 do si                         ; back to cell5
+	       fa re mi do             ; add cell5 to cell4
+	    la                         ; cell4 restored
+         dodo                          ; move to cell7       
+      la
+
+   mimimimi mimimimi mimi              ; incr cell7 x10
+   do lafasi mi                        ; clear, incr cell8
+   do lafasi                           ; clear cell9
+   do lafasi                           ; clear cell10
+   do lafasi                           ; clear cell11
+
+   rererere re                         ; move to cell6
+   si                                  ; full division
+      fa                               ; decr cell6 (copy of value)
+      do fa                            ; decr cell7
+      si
+         do mi dodo                    ; memory is moving o.o
+      la
+      do                               ; 
+         si
+	    si faremido la             ; 
+	    mi do mi dodo              ;
+	 la rererere re
+   la
+   dodo fa si fa rere mi dodo la       ; store remainder in cell6
+   re sifala
+   mimimimi mimimimi
+   si fa re mimimimi mimi do la        ; make cell6 ascii, clear 7
+   dodo si fa rere mi dodo la          ; move quotient cell7
+   rere                                ;
+la
+
+re si
+      so sifala re
+   la
+
+re                                     ; back to cell4 (print value)
+
+
+
+;;;;generating 48 for ascii printing
+do mimimimi mimi             ; incr cell1 x6
+
+la                           ; loop
+  re mimimimi mimimimi       ; incr cell0 x48
+  do fa                      ; decr
+si
+
+
+
