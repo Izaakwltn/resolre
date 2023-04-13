@@ -68,11 +68,14 @@ For Example,
                              re mimimimi mimimi
                              do fa
                           si
-                          re so
+                          re so")
 ```
 
 Will Return: `"+++++++>++++++++[<++++++>-]<."`
-And `(convert-string-to-rsr ""+++++++>++++++++[<++++++>-]<.")`
+And 
+```
+(convert-string-to-rsr ""+++++++>++++++++[<++++++>-]<.")
+```
 Returns `"mimimimimimimidomimimimimimimimilaremimimimimimidofasireso"`
 
 ### Current State of the Project:
