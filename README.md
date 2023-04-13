@@ -50,6 +50,30 @@ larelasi | list/catalog (the array)
 resolremi | commands
 solrela-sisolla | lexical-analysis
 mirefami | main
+solsolredo | brainfuck (conversions)
+
+### Brainfuck Compatibility
+
+Resolre is nearly Brainfuck compatible, the only difference being that it does not accept char-input.
+
+Therefore, all resolre programs are valid brainfuck programs, and all brainfuck programs that do not take char input are valid resolre programs.
+
+The functions `#'convert-string-to-rsr` and `#'convert-string-to-bf` will convert a string of either language into an equivalent string counterpart, and, likewise, `#'convert-file-to-rsr` and `#'convert-file-to-bf` will convert a file in either language into a corresponding file.
+
+For Example, 
+```
+(convert-string-to-bf "mimimimi mimimi
+                          do mimimimi mimimimi
+                          la
+                             re mimimimi mimimi
+                             do fa
+                          si
+                          re so
+```
+
+Will Return: `"+++++++>++++++++[<++++++>-]<."`
+And `(convert-string-to-rsr ""+++++++>++++++++[<++++++>-]<.")`
+Returns `"mimimimimimimidomimimimimimimimilaremimimimimimidofasireso"`
 
 ### Current State of the Project:
 

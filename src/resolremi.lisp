@@ -41,8 +41,9 @@
 
 (defun decr ()
   "Decrements the value of the current cell."
-  (setf (slot-value *current-cell* 'value)
-        (1- (cell-value *current-cell*)))
+  (if (not (zerop (cell-value *current-cell*)))
+      (setf (slot-value *current-cell* 'value)
+            (1- (cell-value *current-cell*))))
   (if (cell-prev *current-cell*)
       (setf (slot-value (cell-prev *current-cell*) 'next)
             *current-cell*)))

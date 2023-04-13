@@ -14,7 +14,8 @@
                              (:file "larelasi")  ; cell list/array
                              (:file "resolremi") ; commands             
                              (:file "solrela-sisolla") ;lexical-analysis
-                             (:file "mirefami"))) ; main
+                             (:file "mirefami") ; main
+                             (:file "solsolredo"))) ; brainfuck conversions
 	       (:module "examples"
                 :serial t
 		:components ((:file "examples")))))
