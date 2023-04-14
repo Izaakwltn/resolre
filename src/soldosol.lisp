@@ -82,11 +82,12 @@
                                 #'(lambda (x)
                                     (string-equal (second x) "la"))
                                 indexed-commands))
-            :if (not (corresponding-si c indexed-commands))
+            :if (not (interpreter-corresponding-si c indexed-commands))
                 :return t 
             :finally (return nil))
       nil))
-      
+
+;;; Currently doesn't support nested loops..... not optimal
 (defun continue-loop (prev-input)
   (let* ((new-input (prompt-read "... "))
          (input (format nil "~a~a" prev-input new-input)))
