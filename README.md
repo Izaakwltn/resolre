@@ -41,7 +41,7 @@ si  | ]   | If cell is non-zero, go back to the start of the loop, else continue
 
 ### Compiler and Interpreter
 
-Resolre can compile .rsr files from the REPL with `(run-file filepath)`, and can run an interpreter with `(resolre)`, as seen below, adding 4 + 8. The interpreter tells you the current cell after your latest command and its value. Unfinished loops carry over onto the next prompt.
+Resolre can compile .rsr files from the REPL with `(run-file filepath)`, and can run an interpreter with `(resolre)`, as seen below, printing the number 4. The interpreter tells you the current cell after your latest command and its value. Unfinished loops carry over onto the next prompt. 
 
 ```
 RESOLRE> (resolre)
@@ -59,6 +59,8 @@ Cell-1: 52
 "4"
 RESOLRE> 
 ```
+
+Commands for the interpreter: `quit` or `exit` will, as expected, end your session, `clear` or `new-session` will reset the Resolre environment, and `export` will print out a list of all commands given so far. 
 
 You can also run `make` within the resolre directory to build an executable of the interpreter that you can run with `./resolre` from the command-line. 
 
