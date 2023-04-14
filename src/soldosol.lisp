@@ -11,9 +11,14 @@
           (cell-value *current-cell*)))
 
 (defun prompt-read (prompt)
-  (format *query-io* "~a: " prompt)
+  (format *query-io* "~a" prompt)
   (force-output *query-io*)
   (read-line *query-io*))
+
+(defvar *commands-string* "")
+
+(defun export-commands ()
+  (write-line *commands-string*))
 
 (defun prompt ()
   (let ((input (prompt-read (format nil "~a~%> " (print-current-cell)))))
@@ -22,17 +27,25 @@
            (if (> (length *print-buffer*) 0)
                *print-buffer*
                (write-line "Fasidola! (Goodbye!)")))
+          ((string-equal input "export")
+           (progn (export-commands)
+                  (prompt)))
+          ((or (string-equal input "clear")
+               (string-equal input "new-session"))
+           (resolre))
           ((unfinished-loop-p (index-parsed (parse input)))
            (continue-loop input))
           (t (progn (setq *indexed-commands* (index-parsed (parse input)))
+                    (setq *commands-string* (format nil "~a ~a" *commands-string* input))
                     (run-commands *indexed-commands*)
                     (prompt))))))
 
 (defun resolre ()
-  (new-session)
+(new-session)
+(setq *commands-string* "")
   (prompt))
-;;; handling unfinished loops
 
+;;; Handling loops
 (defun interpreter-find-la (index indexed-commands)
   "Finds the first 'la' after a given index"
   (first (find-if #'(lambda (x)
@@ -69,7 +82,7 @@
                                 #'(lambda (x)
                                     (string-equal (second x) "la"))
                                 indexed-commands))
-            :if (not (interpreter-corresponding-si c indexed-commands))
+            :if (not (corresponding-si c indexed-commands))
                 :return t 
             :finally (return nil))
       nil))
@@ -83,8 +96,7 @@
           ((unfinished-loop-p (index-parsed (parse input)))
            (continue-loop input))
           (t (progn (setq *indexed-commands* (index-parsed (parse input)))
+                    (setq *commands-string* (format nil "~a ~a" *commands-string* input))
                     (run-commands *indexed-commands*)
                     (prompt))))))
 
-;;; I'm going to need to entirely redo the loop system, one set for the interpreter, one for the compiler
-;;; Unless I populate *indexed-commands* 
