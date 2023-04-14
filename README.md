@@ -60,6 +60,10 @@ Cell-1: 52
 RESOLRE> 
 ```
 
+You can also run `make` within the resolre directory to build an executable of the interpreter that you can run with `./resolre` from the command-line. 
+
+Running Resolre within the REPL has added benefits for trouble-shooting, since you can access the variables \*current-cell\* and \*print-buffer\* after closing the interpreter or running a compilation, and can navigate to other cells using `(move-left)` and `(move-right)`.
+
 ### Navigating the Project:
 
 To make things more frustratingly eccentric, and hopefully interesting, I have named the source files according to Solresol translations:

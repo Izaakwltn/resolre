@@ -8,6 +8,9 @@
   :license "GNU General Purpose License"
   :description "A Brainfuck compiler using Solfege/Solresol syllables"
   :serial t
+  :build-operation program-op
+  :build-pathname "resolre"
+  :entry-point "resolre::resolre"
   :components ((:module "src"
                 :serial t
                 :components ((:file "laresolre") ; package
