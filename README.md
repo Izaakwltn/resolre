@@ -1,11 +1,11 @@
 # Resolre
-## A Brainfuck compiler using Solfege syllables
+## A Brainfuck variant using Solfege syllables
 
-Resolre is a Brainfuck compiler adorned with a thin veneer of [Solresol](https://en.wikipedia.org/wiki/Solresol), an invented human language using the syllables of solfege. 
+Resolre is a Brainfuck spin-off adorned with a thin veneer of [Solresol](https://en.wikipedia.org/wiki/Solresol), an invented human language using the syllables of solfege. 
 
 Resolre means "Error" in Solresol, in addition to being the inverse of "Solresol" itself. (I also strongly considered Solsolredo, "headache" in Solresol, which honestly bears more resemblance to my experience writing this project).
 
-### Simple Example (Prints "7")
+#### Simple Example (Prints "7")
 
 ```
 print-7.rsr
@@ -25,7 +25,7 @@ re so                ; print c0 => 55 ("7")
 
 ### Syntax
 
-Resolre/brainfuck is a language that exists within an array of cells, which are navigated, altered, and accessed with only eight commands.
+Resolre, like brainfuck, is a language that exists within an array of cells, which are navigated, altered, and accessed with only eight commands. Unlike the apocryphal 30k-cell array initialized with the original Brainfuck, Resolre dynamically generates cells as you use them. There are no negative cells, and also no negative values.
 
 Like Solresol, Resolre uses solfege syllables: do re mi fa so la si. Here are the eight Resolre commands, along with their Brainfuck counterparts and their respective functions:
 
@@ -39,6 +39,27 @@ so  | .   | Print the corresponding ascii character to the value of the current 
 la  | [   | Start loop, if the current cell's value is 0, end loop.
 si  | ]   | If cell is non-zero, go back to the start of the loop, else continue past.
 
+### Compiler and Interpreter
+
+Resolre can compile .rsr files from the REPL with `(run-file filepath)`, and can run an interpreter with `(resolre)`, as seen below, adding 4 + 8. The interpreter tells you the current cell after your latest command and its value. Unfinished loops carry over onto the next prompt.
+
+```
+RESOLRE> (resolre)
+Cell-0: 0
+> : mimimimi mimimimi
+Cell-0: 8
+> : la do mimimimi mimi
+... : re fa si
+Cell-0: 0
+> : do
+Cell-1: 48
+> : mimimimi so
+Cell-1: 52
+> : quit
+"4"
+RESOLRE> 
+```
+
 ### Navigating the Project:
 
 To make things more frustratingly eccentric, and hopefully interesting, I have named the source files according to Solresol translations:
@@ -51,6 +72,7 @@ resolremi | commands
 solrela-sisolla | lexical-analysis
 mirefami | main
 solsolredo | brainfuck (conversions)
+soldosol | interpreter
 
 ### Brainfuck Compatibility
 
@@ -71,12 +93,18 @@ For Example,
                           re so")
 ```
 
-Will Return: `"+++++++>++++++++[<++++++>-]<."`
+Will Return: 
+```
+"+++++++>++++++++[<++++++>-]<."
+```
 And 
 ```
 (convert-string-to-rsr ""+++++++>++++++++[<++++++>-]<.")
 ```
-Returns `"mimimimimimimidomimimimimimimimilaremimimimimimidofasireso"`
+Returns 
+```
+"mimimimimimimidomimimimimimimimilaremimimimimimidofasireso"
+```
 
 ### Current State of the Project:
 

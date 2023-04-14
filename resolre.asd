@@ -15,7 +15,8 @@
                              (:file "resolremi") ; commands             
                              (:file "solrela-sisolla") ;lexical-analysis
                              (:file "mirefami") ; main
-                             (:file "solsolredo"))) ; brainfuck conversions
+                             (:file "solsolredo") ; brainfuck conversions
+                             (:file "soldosol"))) ; interpreter
 	       (:module "examples"
                 :serial t
 		:components ((:file "examples")))))

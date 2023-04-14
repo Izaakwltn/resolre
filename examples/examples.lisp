@@ -5,7 +5,11 @@
 (in-package :resolre)
 
 (defun run-example (filename) ;filename in examples folder
-  (run-file (asdf:system-relative-pathname "resolre" (format nil "~a~a" "examples/" filename))))
+  (time (format nil "~%Example: ~a~%Output: ~a"
+          filename
+          (run-file
+           (asdf:system-relative-pathname "resolre"
+                                          (format nil "~a~a" "examples/" filename))))))
 
 (defun run-print-7 ()
   (run-example "print-7.rsr"))
