@@ -1,7 +1,7 @@
 # Resolre
-## A Brainfuck variant using Solfege syllables
+## A Brainfuck Compiler using Solfege syllables
 
-Resolre is a Brainfuck spin-off adorned with a thin veneer of [Solresol](https://en.wikipedia.org/wiki/Solresol), an invented human language using the syllables of solfege. 
+Resolre is a Brainfuck variant adorned with a thin veneer of [Solresol](https://en.wikipedia.org/wiki/Solresol), an invented human language using the syllables of solfege. This implementation includes both a compiler and an interpreter.
 
 Resolre means "Error" in Solresol, in addition to being the inverse of "Solresol" itself. (I also strongly considered Solsolredo, "headache" in Solresol, which honestly bears more resemblance to my experience writing this project).
 
@@ -41,30 +41,13 @@ si  | ]   | If cell is non-zero, go back to the start of the loop, else continue
 
 ### Compiler and Interpreter
 
-Resolre can compile .rsr files from the REPL with `(run-file filepath)`, and can run an interpreter with `(resolre)`, as seen below, printing the number 4. The interpreter tells you the current cell after your latest command and its value. Unfinished loops carry over onto the next prompt. 
+Resolre can compile .rsr files from the REPL with `(run-file filepath)`, and can run an interpreter with `(resolre)`, as seen below, with a classic "Hello World!". The interpreter tells you the current cell after your latest command and its value. Unfinished loops carry over onto the next prompt. 
 
-```
-RESOLRE> (resolre)
-Cell-0: 0
-> : mimimimi mimimimi
-Cell-0: 8
-> : la do mimimimi mimi
-... : re fa si
-Cell-0: 0
-> : do
-Cell-1: 48
-> : mimimimi so
-Cell-1: 52
-> : quit
-"4"
-RESOLRE> 
-```
+!["Resolre Interpreter Hello World"](examples/resolre-interpreter.png "Resolre Interpreter Example")
 
 Commands for the interpreter: `quit` or `exit` will, as expected, end your session, `clear` or `new-session` will reset the Resolre environment, and `export` will print out a list of all commands given so far. 
 
 You can also run `make` within the resolre directory to build an executable of the interpreter that you can run with `./resolre` from the command-line. 
-
-Running Resolre within the REPL has added benefits for trouble-shooting, since you can access the variables \*current-cell\* and \*print-buffer\* after closing the interpreter or running a compilation, and can navigate to other cells using `(move-left)` and `(move-right)`.
 
 ### Navigating the Project:
 
@@ -89,6 +72,7 @@ Therefore, all resolre programs are valid brainfuck programs, and all brainfuck 
 The functions `#'convert-string-to-rsr` and `#'convert-string-to-bf` will convert a string of either language into an equivalent string counterpart, and, likewise, `#'convert-file-to-rsr` and `#'convert-file-to-bf` will convert a file in either language into a corresponding file.
 
 For Example, 
+
 ```
 (convert-string-to-bf "mimimimi mimimi
                           do mimimimi mimimimi
@@ -112,12 +96,16 @@ Returns
 "mimimimimimimidomimimimimimimimilaremimimimimimidofasireso"
 ```
 
-### Current State of the Project:
+### Examples:
 
-Three .rsr files have been tested and are up and running, if you'd like to try them out:
+These .rsr files have been tested and are up and running, if you'd like to try them out:
+
 `(run-hello-world)`
+
 `(run-dumb-hello-world)`
+
 `(run-print-7)`
+
 `(run-summoning)`
 
 I'll be adding more examples soon. 
